@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="show">是否显示？？</p>
+    </div>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                show:true
+            },
+            methods:{
+                init:function(text){
+                    console.log(text);
+                }
+            },
+            mounted:function(){
+                this.init('在初始化时调用');
+
+            }
+        });
+        app.init('通过外部调用');
+    </script>
+</body>
+</html>

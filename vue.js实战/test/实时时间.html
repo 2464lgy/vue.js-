@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实时时间</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{date}}
+    </div>
+    <script>
+        //自个写的
+    /*     new Vue({
+            el:"#app",
+            data:{
+                date:''
+            },
+            mounted:function(){
+                var self=this;
+                var time=setInterval(function(){
+                    self.date=new Date();
+                },1000);
+            },
+            beforeDestory:function(){
+                clearInterval(time);
+            }
+        }) */
+        //标准代码
+        var app=new Vue({
+            el:'#app',
+            data:{
+                date:new Date()
+            },
+            mounted:function(){ //el挂载到实例上调用，一般我们第一个业务逻辑会在这里开始
+                var _this=this;
+                this.timer=setInterval(function(){
+                    _this.date=new Date();
+                },1000);
+            },
+            beofreDestory:function(){
+                if(this.timer){
+                    clearInterval(this.timer);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
