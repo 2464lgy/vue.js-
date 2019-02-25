@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <dvi id="app">
+        <p>单选：</p>
+        <select v-model="selected">
+            <option value="js">JavaScript</option>
+            <option>html</option>
+            <option>css</option>
+        </select>
+        <p>选择的是：{{selected}}</p>
+
+        <p>多选：</p>
+        <select v-model="selected1" multiple>
+                <option value="js">JavaScript</option>
+                <option>html</option>
+                <option>css</option>
+        </select>
+        <p>选择的是：{{selected1}}</p>
+
+        <p>动态生成：</p>
+        <select v-model="selected2" multiple>
+            <option v-for="(item,index) in options" :value="item.value">{{item.text}}</option>
+        </select>
+        <p>选择的是：{{selected2}}</p>
+    </dvi>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                selected:'html',
+                selected1:['css'],
+                selected2:['html'],
+                options:[
+                    {
+                        text:'HTML',
+                        value:'html'
+                    },
+                    {
+                        text:'JavaScript',
+                        value:'js'
+                    },
+                    {
+                        text:'CSS',
+                        value:'css'
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

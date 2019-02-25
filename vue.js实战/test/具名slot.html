@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <p>
+        若子组件内声明的slot没有name特性，第一个匿名slot将作为默认slot出现，父组件没有使用slot特性的元素的内容都将出现在这里。
+        如果没有指定默认的匿名slot，父组件内多余的内容片段都将被抛弃。
+    </p>
+    <div id="app">
+        <child-component>
+            <h2 slot="header">标题1</h2>
+            <p>正文内容</p>
+            <p>更多的正文内容</p>
+            <div slot="footer">底部信息</div>
+        </child-component>       
+    </div>
+    <script>
+        Vue.component('child-component',{
+            template:`
+            <div class="container">
+                <div class="header">
+                    <slot name="header"></slot>
+                </div>
+                <div class="footer">
+                    <slot name="footer"></slot>
+                </div>
+            </div>
+            `
+        })
+    </script>
+</body>
+</html>

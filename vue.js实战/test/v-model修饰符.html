@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+     <label>lazy</label>
+     <input type="text" v-model.lazy="lazy">
+     <span>{{lazy}}</span>
+     <p>在输入框中，v-model默认是在input事件中同步输入框的数据（除了中文输入法），使用修饰符.lazy 会转变为在change事件中同步</p>
+     <br>
+     <label>number</label>
+     <input type="text" v-model.number="number">
+     <span>{{typeof number}}</span>
+     <span>{{number}}</span>
+     <p>
+         使用修饰符.number可以将输入转换为Number类型，否则即使输入的是数字，类型其实是String，且使用.number后，若内容已数字开头会对输入的内容进行截取，仅截取数字绑定到变量上。若不是已数字开头，将会把所有的输入赋给变量。
+     </p>
+     <br>
+     <label>trim</label>
+     <input type="text" v-model.trim="trim">
+    <span>{{trim.length}}</span>
+    <p>.trim修饰符可以自动过滤掉输入的首尾空格。</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                lazy:'',
+                number:'',
+                trim:''
+            }
+        })
+    </script>
+</body>
+</html>

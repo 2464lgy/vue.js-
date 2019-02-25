@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component @click="outClick"></my-component>   <!-- 点击无弹框，事件绑定失败 -->
+        <my-component @click.native="outClick"></my-component>  <!--点击有弹框，事件绑定成功--->
+
+    </div>
+    <script>
+        Vue.component('my-component',{
+            template:'<button>点击事件</button>'
+        })
+       var app=new Vue({
+           el:'#app',
+           methods:{
+               outClick(){
+                   alert('this is outer');
+               }
+           }
+       })
+    </script>
+</body>
+</html>

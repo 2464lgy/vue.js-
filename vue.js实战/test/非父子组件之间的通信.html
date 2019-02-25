@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <com-a></com-a>
+        <com-b></com-b>
+    </div>
+    <script>
+        //vm.$emit( event, arg ) //触发当前实例上的事件
+        //vm.$on( event, fn );//监听event事件后运行 fn； 
+        var Event=new Vue();    //声明一个独立的空Vue公用实例，用来触发通讯的事件。
+        var a={
+            template:'<div><span>我是a组件，我的数据内容是{{msga}}</span><br><input type="button" value="我要发送数据" @click="send"></div>',
+            data(){
+                return{
+                    msga:'我是a数据，我要发送给兄弟组件'
+                }
+            },
+            methods:{
+                send(){
+                    Event.$emit('a-msga',this.msga);//触发前面Event公用示例的方法，那么别的地方就可以想办法监听接收这个事件。参数（事件名，传入的值）
+                }
+            }
+        }
+        var b={
+            template:'<div><h3>这是B组件</h3><span>我是从a组件里面接收的数据：{{a}}</span></div>',
+            data(){
+                return {
+                    a:''
+                }
+            },
+            mounted(){  //这里mounted表示当组件和页面挂载完成的时候，需要执行的函数。
+                var _this=this;//因为在Event.on内部的this是指向Event实例的，所以这里，先使用_this将this存起来，后面就可以使用了。
+                Event.$on('a-msga',function(a){
+                    alert('触发了接收');
+                    _this.a=a;
+                })
+            }
+        }
+        new Vue({
+            el:'#app',
+            components:{
+                'com-a':a,
+                'com-b':b
+            }
+        })
+    </script>
+</body>
+</html>

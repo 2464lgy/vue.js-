@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <aaa></aaa>
+    </div>
+    <!-- 模板可以使用template标签写到外面，然后在components里面调用 -->
+    <template id="temA">
+        <div>
+            <h3>我是：{{msg}}</h3>
+            <bbb :Fmsg="msg" :Fhandl="this.test"></bbb>   <!-- 调用子组件 -->
+        </div>
+    </template>
+    <script>
+        var app=new Vue({
+            el:'#box',
+            components:{
+                'aaa':{
+                    data:function(){
+                        return{
+                            msg:'我是父组件'
+                        }
+                    },
+                    methods:{
+                        test:function(){
+                            alert('我是父组件的方法');
+                        }
+                    },
+                    template:'#temA',//父组件的模板
+                    components:{  //父组件内注册的子组件
+                        bbb:{
+                            props:['Fmsg','Fhandl'],
+                            template:'<h3 @click="Fhandl">我是子组件   ————————{{Fmsg}}</h3>'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

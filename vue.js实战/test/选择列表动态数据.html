@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>单选对象</p>
+        <select v-model="selected">
+            <option :value="{number:123}">123</option>
+            <option :value="{number:'123M'}">123M</option>
+            <option :value="{number1:234}">234</option>
+            <option :value="{number2:345}">345</option>
+        </select>
+        {{selected}}
+        <p>多选数组    头部追加</p>
+        <select v-model="selected1" multiple>
+                <option :value="{number:123}">123</option>
+                <option :value="{numberM:'123M'}">123</option>
+                <option :value="{number:234}">234</option>
+                <option :value="{number:345}">345</option>
+            </select>
+        {{selected1}}
+    </div>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                selected:'',
+                selected1:''
+            }
+        })
+    </script>
+</body>
+</html>
